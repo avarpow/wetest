@@ -1,36 +1,65 @@
 import pandas as pd
 import json
-danxuan_raw=pd.read_excel("danxuan.xlsx")
-duoxuan_raw=pd.read_excel("duoxuan.xlsx")
+dangshi_raw=pd.read_excel("dangshi.xlsx")
+xinzhongguo_raw=pd.read_excel("xinzhongguo.xlsx")
+gaigekaifang_raw=pd.read_excel("gaigekaifang.xlsx")
+fazhanshi_raw=pd.read_excel("fazhanshi.xlsx")
 out={}
-out["test1"]=[]
-for i in range(0,len(danxuan_raw)):
+out["dangshi"]=[]
+out["xinzhongguo"]=[]
+out["gaigekaifang"]=[]
+out["fazhanshi"]=[]
+for i in range(0,len(dangshi_raw)):
     t={}
-    t["question"]=danxuan_raw['problem'][i]
+    t["question"]=dangshi_raw['problem'][i]
     t["option"]={}
-    t["option"]["A"]=danxuan_raw['cha'][i]
-    t["option"]["B"]=danxuan_raw['chb'][i]
-    t["option"]["C"]=danxuan_raw['chc'][i]
-    t["option"]["D"]=danxuan_raw['chd'][i]
-    t["true"]=danxuan_raw['real'][i]
+    t["option"]["A"]=dangshi_raw['cha'][i]
+    t["option"]["B"]=dangshi_raw['chb'][i]
+    t["option"]["C"]=dangshi_raw['chc'][i]
+    t["true"]=dangshi_raw['real'][i]
     t["type"]=1
     t["scores"]=10
     t['checked']=False
-    out["test1"].append(t)
-for i in range(0,len(duoxuan_raw)):
+    out["dangshi"].append(t)
+for i in range(0,len(xinzhongguo_raw)):
     t={}
-    t["question"]=duoxuan_raw['problem'][i]
+    t["question"]=xinzhongguo_raw['problem'][i]
     t["option"]={}
-    t["option"]["A"]=duoxuan_raw['cha'][i]
-    t["option"]["B"]=duoxuan_raw['chb'][i]
-    t["option"]["C"]=duoxuan_raw['chc'][i]
-    t["option"]["D"]=duoxuan_raw['chd'][i]
-    t["true"]=duoxuan_raw['real'][i]
-    t["type"]=2
+    t["option"]["A"]=xinzhongguo_raw['cha'][i]
+    t["option"]["B"]=xinzhongguo_raw['chb'][i]
+    t["option"]["C"]=xinzhongguo_raw['chc'][i]
+    t["true"]=xinzhongguo_raw['real'][i]
+    t["type"]=1
     t["scores"]=10
     t['checked']=False
-    out["test1"].append(t)
-out_danxuan_rawa=json.dumps(out,ensure_ascii=False,indent=4)
+    out["xinzhongguo"].append(t)
+for i in range(0,len(gaigekaifang_raw)):
+    t={}
+    t["question"]=gaigekaifang_raw['problem'][i]
+    t["option"]={}
+    t["option"]["A"]=gaigekaifang_raw['cha'][i]
+    t["option"]["B"]=gaigekaifang_raw['chb'][i]
+    t["option"]["C"]=gaigekaifang_raw['chc'][i]
+    t["true"]=gaigekaifang_raw['real'][i]
+    t["type"]=1
+    t["scores"]=10
+    t['checked']=False
+    out["gaigekaifang"].append(t)
+
+for i in range(0,len(fazhanshi_raw)):
+    t={}
+    t["question"]=fazhanshi_raw['problem'][i]
+    t["option"]={}
+    t["option"]["A"]=fazhanshi_raw['cha'][i]
+    t["option"]["B"]=fazhanshi_raw['chb'][i]
+    t["option"]["C"]=fazhanshi_raw['chc'][i]
+    t["true"]=fazhanshi_raw['real'][i]
+    t["type"]=1
+    t["scores"]=10
+    t['checked']=False
+    out["fazhanshi"].append(t)
+
+out_all=json.dumps(out,ensure_ascii=False,indent=4)
 with open("test.json",'w') as fs:
-    fs.write(out_danxuan_rawa)
-print(danxuan_raw)
+    fs.write(out_all)
+print(out_all)
